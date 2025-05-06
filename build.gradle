@@ -7,7 +7,7 @@
 */
 
 group          = "com.etendoerp"
-version        = "1.8.0"
+version        = "1.9.0"
 description    = "Etendo Reactor"
 ext.artifact   = "reactor"
 ext.repository = "https://maven.pkg.github.com/etendosoftware/com.etendoerp.platform.extensions"
