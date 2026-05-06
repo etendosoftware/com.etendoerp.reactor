@@ -7,14 +7,12 @@ import static org.mockito.Mockito.verify;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Stream;
 
-import jakarta.enterprise.inject.Instance;
-import jakarta.enterprise.util.TypeLiteral;
+import javax.enterprise.inject.Instance;
+import javax.enterprise.util.TypeLiteral;
 
 import org.junit.jupiter.api.Test;
 
@@ -87,15 +85,6 @@ class EtendoReactorInitializerTest {
         return values.get(0);
       }
 
-      @Override
-      public Handle<EtendoReactorSetup> getHandle() {
-        throw new UnsupportedOperationException();
-      }
-
-      @Override
-      public Iterable<? extends Handle<EtendoReactorSetup>> handles() {
-        throw new UnsupportedOperationException();
-      }
     };
   }
 
