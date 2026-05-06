@@ -18,6 +18,15 @@ import org.junit.jupiter.api.Test;
 
 class EtendoReactorInitializerTest {
 
+  /** Dedicated unchecked exception for reflective test setup failures. */
+  private static final class TestReflectionException extends RuntimeException {
+    private static final long serialVersionUID = 1L;
+
+    private TestReflectionException(String message, ReflectiveOperationException cause) {
+      super(message, cause);
+    }
+  }
+
   @Test
   void initializeShouldInvokeInitOnEverySetup() throws Exception {
     EtendoReactorSetup first = mock(EtendoReactorSetup.class);
@@ -73,6 +82,7 @@ class EtendoReactorInitializerTest {
 
       @Override
       public void destroy(EtendoReactorSetup instance) {
+        // No cleanup is required because this test instance never creates CDI-managed beans.
       }
 
       @Override
@@ -88,10 +98,13 @@ class EtendoReactorInitializerTest {
     };
   }
 
-  private void setSetups(EtendoReactorInitializer initializer, Instance<EtendoReactorSetup> setups)
-      throws Exception {
-    Field field = EtendoReactorInitializer.class.getDeclaredField("setups");
-    field.setAccessible(true);
-    field.set(initializer, setups);
+  private void setSetups(EtendoReactorInitializer initializer, Instance<EtendoReactorSetup> setups) {
+    try {
+      Field field = EtendoReactorInitializer.class.getDeclaredField("setups");
+      field.setAccessible(true);
+      field.set(initializer, setups);
+    } catch (ReflectiveOperationException exception) {
+      throw new TestReflectionException("Unable to inject test setups", exception);
+    }
   }
 }
