@@ -7,7 +7,7 @@
 */
 
 group          = "com.etendoerp"
-version        = "3.1.0"
+version        = "3.2.0"
 description    = "Etendo Reactor"
 ext.artifact   = "reactor"
 ext.repository = "https://maven.pkg.github.com/etendosoftware/com.etendoerp.platform.extensions"
@@ -61,7 +61,7 @@ sourceSets {
 */
 dependencies {
     implementation 'io.projectreactor.kafka:reactor-kafka:1.3.14'
-    implementation('com.etendoerp.platform:etendo-core:[26.1.0,26.2.0)')
+    implementation('com.etendoerp.platform:etendo-core:[26.1.0,26.3.0)')
 }
 
 test {
